@@ -16,7 +16,7 @@ This file describes a **small demo**: 5 stocks, one train/test split. Stay stric
 
 ### Data
 - **5 stocks, one per distinct GICS sector**, large-cap S&P 500 members. You choose them. Every stock must have a complete daily price history over the whole date range (no gaps, no IPO inside the range).
-- Record the chosen tickers and their sectors in `config.py` and in `README.md`.
+- Record the chosen tickers and their sectors in `config.py`.
 - **Date range: 2021-01-01 to 2025-12-31** (5 years of daily data). Keep it as a constant in `config.py`.
 - Source: `yfinance`, **adjusted close** prices. Download once and cache to `data/prices.csv`; later runs read the cache.
 
@@ -42,7 +42,7 @@ Weights `w` are an N×1 vector. Constraints for **all** strategies: `sum(w) = 1`
 - **GMVP**: minimize `w^T Σ w` subject to the constraints. Solve with `cvxpy`.
 - **Markowitz**: maximize `w^T μ − (λ/2) w^T Σ w` subject to the constraints. Solve with `cvxpy`.
   - **Efficient frontier**: solve over a grid of λ > 0 (log-spaced, e.g. `np.logspace(-1, 3, 50)`); for each λ record in-sample annualized expected return and volatility. Plot the frontier.
-  - **Comparison λ**: pick **one** fixed λ for the strategy comparison. Choose a middle value such that the Markowitz weights lie clearly between the highest-mean single stock and the GMVP (not ≈100% one stock, not ≈GMVP). Write down the chosen value and the reason in `config.py` and `README.md`.
+  - **Comparison λ**: pick **one** fixed λ for the strategy comparison. Choose a middle value such that the Markowitz weights lie clearly between the highest-mean single stock and the GMVP (not ≈100% one stock, not ≈GMVP). Write down the chosen value and the reason in `config.py`.
 
 ### Out-of-sample backtest
 - **Buy-and-hold**: on the first test day, invest according to `w`; never rebalance during the test period. Weights drift with prices.
@@ -86,7 +86,6 @@ backtest.py     # buy-and-hold value series, sharpe, max_drawdown, cumulative_re
 verify.py       # the four verification checks; prints PASS/FAIL for each
 run_demo.py     # runs everything end to end, writes results/
 requirements.txt
-README.md       # how to run, chosen tickers/sectors, chosen λ and why
 ```
 
 ## Coding rules

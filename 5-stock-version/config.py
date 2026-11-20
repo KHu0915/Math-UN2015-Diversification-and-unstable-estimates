@@ -33,7 +33,7 @@ LAM_GRID = np.logspace(-1, 3, 50)
 # (highest mu_hat), and lam >= 100 is close to the GMVP. At lam = 10 the
 # weights are about AAPL 14%, JPM 11%, JNJ 0%, XOM 42%, PG 33% (both
 # covariance estimators) -- XOM is roughly halfway between 100% and its GMVP
-# weight of ~13%. See README.md.
+# weight of ~13%.
 LAM_COMPARE = 10.0
 
 # Paths.
